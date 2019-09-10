@@ -4,9 +4,13 @@
     <p><%= @tool.description %></p>
   </div>
   <div>
-    <%= link_to 'Edit', edit_tool_path(@tool) %>
-    <%= link_to 'Delete', tool_path(@tool), method: :delete,
-      data: { confirm: "Are you sure you want to delete this tool?" } %>
+    <% if policy(@tool).edit? %>
+      <%= link_to 'Edit', edit_tool_path(@tool) %>
+    <% end %>
+    <% if policy(@tool).destroy? %>
+      <%= link_to 'Delete', tool_path(@tool), method: :delete,
+        data: { confirm: "Are you sure you want to delete this tool?" } %>
+    <% end %>
     <%= link_to 'Back to Tools', tools_path %>
   </div>
 </div>
