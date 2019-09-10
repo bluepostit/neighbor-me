@@ -18,7 +18,7 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <% if user_signed_in? %>
             <%= link_to "My Tools", tools_path, class: "dropdown-item" %>
-            <%= link_to "My Bookings", root_path, class: "dropdown-item" %>
+            <%= link_to "My Bookings", bookings_path, class: "dropdown-item" %>
             <div class="dropdown-divider"></div>
             <%= link_to "Sign Out", destroy_user_session_path, class: "dropdown-item", method: :delete %>
           <% else %>

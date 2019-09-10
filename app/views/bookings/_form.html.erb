@@ -1,0 +1,15 @@
+<% if @booking.id.nil? %>
+  <% form_for = [@tool, @booking] %>
+<% else %>
+  <% form_for = @booking %>
+<% end %>
+
+<%= simple_form_for form_for do |f| %>
+  <%= f.input :collect_time %>
+  <%= f.input :return_time %>
+  <% unless @booking.id.nil? %>
+    <%= f.input :collected_time %>
+    <%= f.input :returned_time %>
+  <% end %>
+  <%= f.button :submit, class: "btn btn-primary rounded" %>
+<% end %>

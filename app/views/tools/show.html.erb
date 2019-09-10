@@ -20,6 +20,15 @@
     <p><%= @tool.description %></p>
   </div>
   <div>
-    <%= link_to 'Back to Tools', tools_path %>
+    <%= link_to new_tool_booking_path(@tool) do %>
+      <i class="fas fa-satellite-dish mr-1"></i>
+      Book this tool
+    <% end %>
+  </div>
+  <div>
+    <%= link_to tools_path do %>
+      <i class="fas fa-arrow-left mr-1"></i>
+      Back to Tools
+    <% end %>
   </div>
 </div>

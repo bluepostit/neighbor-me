@@ -10,10 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_09_091950) do
+ActiveRecord::Schema.define(version: 2019_09_10_103348) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bookings", force: :cascade do |t|
+    t.bigint "tool_id"
+    t.bigint "user_id"
+    t.boolean "approved", default: false, null: false
+    t.datetime "collect_time", null: false
+    t.datetime "return_time", null: false
+    t.datetime "collected_time"
+    t.datetime "returned_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tool_id"], name: "index_bookings_on_tool_id"
+    t.index ["user_id"], name: "index_bookings_on_user_id"
+  end
 
   create_table "tools", force: :cascade do |t|
     t.bigint "user_id"
@@ -40,5 +54,7 @@ ActiveRecord::Schema.define(version: 2019_09_09_091950) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "bookings", "tools"
+  add_foreign_key "bookings", "users"
   add_foreign_key "tools", "users"
 end
