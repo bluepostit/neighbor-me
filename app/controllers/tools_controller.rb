@@ -44,6 +44,9 @@ class ToolsController < ApplicationController
   end
 
   def destroy
+    @tool.destroy
+    flash.notice = "Tool has been deleted."
+    redirect_to tools_path
   end
 
   protected
@@ -53,6 +56,9 @@ class ToolsController < ApplicationController
     authorize @tool
   rescue ActiveRecord::RecordNotFound
     flash.alert = "We couldn't find that tool."
+    redirect_to tools_path
+  rescue Pundit::NotAuthorizedError
+    flash.alert = "You are not allowed to do this action."
     redirect_to tools_path
   end
 
