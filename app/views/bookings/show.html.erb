@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="my-4">
+    <span class="h1 h1-smaller mr-1">
+      Booking for: <%= @booking.tool.name.capitalize %>
+    </span>
+    <% if policy(@booking).edit? %>
+      <%= link_to edit_booking_path(@booking) do %>
+        <i class="fas fa-edit mr-1"></i>
+      <% end %>
+    <% end %>
+    <% if policy(@booking).destroy? %>
+      <%= link_to booking_path(@booking), method: :delete,
+      data: { confirm: "Are you sure you want to delete this booking?" } do %>
+        <i class="fas fa-trash mr-1"></i>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div>
+    <q><%= @booking.tool.description %></q>
+    <div>From: <%= @booking.collect_time %></div>
+    <div>To: <%= @booking.return_time %></div>
+  </div>
+  <div>
+    <p>Collected: <%= @booking.collected_time.nil? ? 'Never' : @booking.collected_time %></p>
+    <p>Returned: <%= @booking.returned_time.nil? ? 'Never' : @booking.returned_time %></p>
+  </div>
+  <div>
+    <%= link_to bookings_path do %>
+      <i class="fas fa-arrow-left mr-1"></i>
+      Back to Bookings
+    <% end %>
+
+  </div>
+</div>

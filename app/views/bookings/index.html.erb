@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="text-center my-4">
+    <span class="h1 h1-smaller mr-1">My Bookings</span>
+    <%#= link_to new_tool_path do %>
+    <!-- <i class="fa fa-plus"></i> -->
+    <%# end %>
+  </div>
+  <div class="bookings-container">
+      <% @bookings.each do |booking| %>
+        <div>
+          <%= link_to booking_path(booking) do %>
+          <i class="fa fa-hammer mr-1"></i>
+          <%= booking.tool.name.capitalize %> &nbsp;
+          <%= booking.collect_time %>
+        </div>
+      <% end %>
+    <%#= render partial: 'components/booking-card', locals: { booking: booking } %>
+    <% end %>
+  </div>
+</div>
