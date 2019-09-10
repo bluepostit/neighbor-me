@@ -3,7 +3,7 @@ class ToolsController < ApplicationController
   before_action :set_tool, only: %i[show edit update destroy]
 
   def index
-    @tools = Tool.all
+    @tools = policy_scope(Tool)
   end
 
   def show
@@ -12,11 +12,13 @@ class ToolsController < ApplicationController
 
   def new
     @tool = Tool.new
+    authorize @tool
   end
 
   def create
     @tool = Tool.new(tool_params)
     @tool.user = current_user
+    authorize @tool
     if @tool.save
       flash.notice = "New tool created."
       redirect_to tool_path @tool
@@ -48,6 +50,7 @@ class ToolsController < ApplicationController
 
   def set_tool
     @tool = Tool.find(params[:id])
+    authorize @tool
   rescue ActiveRecord::RecordNotFound
     flash.alert = "We couldn't find that tool."
     redirect_to tools_path
