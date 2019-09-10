@@ -1,13 +1,13 @@
 <div class="container">
-  <h1>All Tools</h1>
-  <div>
-    <%= link_to "Add new tool", new_tool_path %>
-  </div>
-  <ul>
-    <% @tools.each do |tool| %>
-      <li>
-        <%= link_to tool.name, tool_path(tool) %>
-      </li>
+  <div class="text-center my-4">
+    <span class="h1 h1-smaller mr-1">All Tools</span>
+    <%= link_to new_tool_path do %>
+      <i class="fa fa-plus"></i>
     <% end %>
-  </ul>
+  </div>
+  <div class="tools-container">
+    <% @tools.each do |tool| %>
+      <%= render partial: 'components/tool-card', locals: { tool: tool } %>
+    <% end %>
+  </div>
 </div>
