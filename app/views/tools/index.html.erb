@@ -3,11 +3,9 @@
   <div>
     <%= link_to "Add new tool", new_tool_path %>
   </div>
-  <ul>
+  <div class="tools-container">
     <% @tools.each do |tool| %>
-      <li>
-        <%= link_to tool.name, tool_path(tool) %>
-      </li>
+      <%= render partial: 'components/tool-card', locals: { tool: tool } %>
     <% end %>
-  </ul>
+  </div>
 </div>

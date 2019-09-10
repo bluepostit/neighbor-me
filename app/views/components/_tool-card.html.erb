@@ -1,0 +1,11 @@
+<%= link_to tool_path(tool) do %>
+  <div class="tool-card" style="background-image: url(<%= tool.photo %>)">
+    <div class="tool-card-heading">
+      <h3><%= tool.name %></h3>
+      <p><%= tool.user.email %></p>
+    </div>
+    <div class="tool-card-body">
+      <p><%= tool.description %></p>
+    </div>
+  </div>
+<% end %>
