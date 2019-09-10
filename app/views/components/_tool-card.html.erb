@@ -1,8 +1,14 @@
-<%= link_to tool_path(tool) do %>
+<%= link_to tool_path(tool), class: "tool-card-wrapper" do %>
   <div class="tool-card" style="background-image: url(<%= tool.photo %>)">
     <div class="tool-card-heading">
       <h3><%= tool.name %></h3>
-      <p><%= tool.user.email %></p>
+      <p class="user-email">
+        <% if tool.user == current_user %>
+          <strong>You</strong> (<%= tool.user.email %>)
+        <% else %>
+          <%= tool.user.email %>
+        <% end %>
+      </p>
     </div>
     <div class="tool-card-body">
       <p><%= tool.description %></p>
