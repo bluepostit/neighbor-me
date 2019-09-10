@@ -17,6 +17,10 @@ class ToolPolicy < ApplicationPolicy
     user_is_owner?
   end
 
+  def destroy?
+    user_is_owner?
+  end
+
   protected
 
   def user_is_owner?
